@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { CreatePostType } from '@/lib/types';
+import { CreatePostType } from '../../lib/types';
 
 interface CreatePostModalProps {
     onClose: () => void;

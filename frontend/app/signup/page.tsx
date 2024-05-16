@@ -4,9 +4,9 @@ import React from 'react';
 import { EyeClosed, Eye, ArrowRight } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import backend from '@/lib/axios';
+import backend from '../../lib/axios';
 import Cookie from 'js-cookie'
-import Toaster from '@/lib/toast';
+import Toaster from '../../lib/toast';
 import validator from 'validator';
 
 const Login = () => {

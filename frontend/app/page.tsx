@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { PostType } from '@/lib/types';
+import { PostType } from '../lib/types';
 import PostCard from './components/postCard';
 import { useRouter } from 'next/navigation';
-import Toaster from '@/lib/toast';
-import backend from '@/lib/axios';
+import Toaster from '../lib/toast';
+import backend from '../lib/axios';
 
 const MainPage = () => {
     const [posts, setPosts] = useState<PostType[]>([]);

@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState, Suspense } from 'react';
-import { PostType, CreatePostType } from '@/lib/types';
+import { PostType, CreatePostType } from '../../lib/types';
 import PostCard from '../components/postCard';
 import CreatePostModal from '../components/CreatePostModal';
-import Toaster from '@/lib/toast';
+import Toaster from '../../lib/toast';
 import Cookie from 'js-cookie'
 import { useRouter } from 'next/navigation';
-import backend from '@/lib/axios';
-import getSubFromJwt from '@/lib/jwt';
+import backend from '../../lib/axios';
+import getSubFromJwt from '../../lib/jwt';
 import PostCardSkeleton from '../components/skeleton';
 
 const Dashboard = () => {

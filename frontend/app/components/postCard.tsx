@@ -1,6 +1,6 @@
 import React from 'react';
-import { PostType } from '@/lib/types';
-import truncate from '@/lib/trunacate';
+import { PostType } from '../../lib/types';
+import truncate from '../../lib/trunacate';
 
 interface Props {
     post: PostType;

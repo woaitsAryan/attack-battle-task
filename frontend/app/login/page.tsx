@@ -3,9 +3,9 @@
 import { EyeClosed, Eye, ArrowRight, Building } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import backend from '@/lib/axios';
+import backend from '../../lib/axios';
 import Cookie from 'js-cookie'
-import Toaster from '@/lib/toast';
+import Toaster from '../../lib/toast';
 
 const Login = () => {
     const router = useRouter();
@@ -35,7 +35,7 @@ const Login = () => {
     }
 
     return (
-        <main className="min-h-[calc(100vh - 60px)] flex    justify-center items-center w-full">
+        <main className="min-h-[90vh] flex justify-center items-center w-full">
             <div className="w-[50%] h-full max-lg:w-full font-primary py-8 px-8 flex flex-col justify-center items-center">
                 <form onSubmit={handleSubmit} className="w-3/5 max-md:w-full flex flex-col items-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
