@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useEffect } from 'react';
 import { EyeClosed, Eye, ArrowRight, Building } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -21,13 +20,13 @@ const Login = () => {
             password,
         };
         const toaster = Toaster.startLoad('Logging In');
-
         try {
-
             const response = await backend.post('/auth/login', formData)
             Toaster.stopLoad(toaster, 'Logged In!', 1);
             const token = response.data.token
+            const name = response.data.user.name
             Cookie.set('token', token)
+            Cookie.set('name', name)
 
         } catch (err: any) {
             console.log(err)
@@ -36,8 +35,8 @@ const Login = () => {
     }
 
     return (
-        <main className="h-full flex justify-center items-center w-full">
-            <div className="w-[50%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex flex-col justify-center items-center">
+        <main className="min-h-[calc(100vh - 60px)] flex    justify-center items-center w-full">
+            <div className="w-[50%] h-full max-lg:w-full font-primary py-8 px-8 flex flex-col justify-center items-center">
                 <form onSubmit={handleSubmit} className="w-3/5 max-md:w-full flex flex-col items-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
                         <div className="text-2xl font-semibold">Let&apos;s Get Back In</div>

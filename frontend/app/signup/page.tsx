@@ -7,16 +7,47 @@ import { useRouter } from 'next/navigation';
 import backend from '@/lib/axios';
 import Cookie from 'js-cookie'
 import Toaster from '@/lib/toast';
+import validator from 'validator';
 
 const Login = () => {
     const router = useRouter();
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('')
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (name.trim().length == 0 || !/^[a-z][a-z\s]*/.test(name.trim().toLowerCase())) {
+            Toaster.error('Enter a Valid Name');
+            return;
+        }
+        if (!validator.isEmail(email)) {
+            Toaster.error('Enter a Valid Email');
+            return;
+        }
+
+        if (
+            !validator.isStrongPassword(password, {
+                minLength: 8,
+                minLowercase: 0,
+                minUppercase: 0,
+                minNumbers: 0,
+                minSymbols: 0,
+            })
+        ) {
+            Toaster.error('Enter a strong Password');
+            return;
+        }
+
+        if (password != confirmPassword) {
+            Toaster.error('Passwords do not match');
+            return;
+        }
+
         const formData = {
             name,
             password,
@@ -26,19 +57,22 @@ const Login = () => {
         try {
 
             const response = await backend.post('/auth/signup', formData)
-            Toaster.stopLoad(toaster, 'Logged In!', 1);
             const token = response.data.token
+            const name = response.data.user.name
             Cookie.set('token', token)
+            Cookie.set('name', name)
+            Toaster.stopLoad(toaster, 'Registered!', 1);
+            router.push('/dashboard')
 
         } catch (err: any) {
             console.log(err)
-            Toaster.stopLoad(toaster, err, 0);
+            Toaster.stopLoad(toaster, err.response.data.message, 0);
         }
     }
 
     return (
-        <main className="h-full flex justify-center items-center w-full">
-            <div className="w-[50%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex flex-col justify-center items-center">
+        <main className="h-[calc(100vh - 60px)] flex justify-center items-center w-full">
+            <div className="w-[50%] max-lg:w-full font-primary py-8 px-8 flex flex-col justify-center items-center translate-y-2">
                 <form onSubmit={handleSubmit} className="w-3/5 max-md:w-full flex flex-col items-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
                         <div className="text-2xl font-semibold">Welcome to Attack Battle</div>
@@ -94,6 +128,33 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="flex flex-col gap-2 w-full">
+                        <div className="font-medium">Confirm Password</div>
+                        <div className="w-full relative">
+                            <input
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={el => setConfirmPassword(el.target.value)}
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                className="w-full bg-white p-2 rounded-xl focus:outline-none focus:bg-white border-2 text-gray-400 pr-10"
+                            />
+                            {showConfirmPassword ? (
+                                <Eye
+                                    onClick={() => setShowConfirmPassword(false)}
+                                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                                    size={20}
+                                    weight="regular"
+                                />
+                            ) : (
+                                <EyeClosed
+                                    onClick={() => setShowConfirmPassword(true)}
+                                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                                    size={20}
+                                    weight="regular"
+                                />
+                            )}
+                        </div>
+                    </div>
                     <div className="w-full p-1 flex flex-col gap-2 items-center">
                         <button
                             type="submit"
@@ -107,7 +168,7 @@ const Login = () => {
                         </div>
                     </div>
                 </form>
-            </div>
+            </div >
         </main >
 
     );
