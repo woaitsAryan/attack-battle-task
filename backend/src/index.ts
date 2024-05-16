@@ -8,6 +8,7 @@ import authRouter from './routes/auth.route.js'
 import mongoSanitize from 'express-mongo-sanitize'
 import { postsRouter } from './routes/post.route.js'
 import errorHandler from './middleware/error.middleware.js'
+import healthRouter from './routes/health.route.js'
 
 const app = express()
 const PORT = getEnv.PORT
@@ -24,6 +25,7 @@ if (getEnv.ENVIRONMENT === 'dev') app.use(morgan('dev'))
 
 app.use('/auth', authRouter)
 app.use('/posts', postsRouter)
+app.use('/health', healthRouter)
 
 app.use(errorHandler)
 
