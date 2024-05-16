@@ -3,9 +3,16 @@ import { z } from 'zod'
 
 const envSchema = z.object({
   ENVIRONMENT: z.string(),
-  DB_URL: z.string(),
+  DB_DATABASE: z.string(),
+  DB_HOST: z.string(),
+  DB_PASSWORD: z.string(),
+  DB_PORT: z.string().transform(Number),
+  DB_USER: z.string(),
   PORT: z.string().transform(Number),
-  JWT_KEY: z.string()
+  JWT_KEY: z.string(),
+  REDIS_PASSWORD: z.string(),
+  REDIS_HOST: z.string(),
+  REDIS_PORT: z.string().transform(Number)
 })
 
 type EnvType = z.infer<typeof envSchema>

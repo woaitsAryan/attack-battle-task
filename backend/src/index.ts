@@ -9,11 +9,13 @@ import mongoSanitize from 'express-mongo-sanitize'
 import { postsRouter } from './routes/post.route.js'
 import errorHandler from './middleware/error.middleware.js'
 import healthRouter from './routes/health.route.js'
+import { connectToRedis } from './initializers/redis.js'
 
 const app = express()
 const PORT = getEnv.PORT
 
 void connectToDB()
+void connectToRedis()
 
 app.use(mongoSanitize())
 
