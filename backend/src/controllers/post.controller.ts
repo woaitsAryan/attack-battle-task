@@ -46,7 +46,16 @@ export const GetPostsController = catchAsync(
       }
       query = { authorId: req.query.author }
     }
-    const posts = await Post.find(query).populate('authorId', 'name email')
+
+    const page = req.query.page == null ? 1 : parseInt(req.query.page as string)
+    const limit = req.query.limit == null ? 10 : parseInt(req.query.limit as string)
+    const skip = (page - 1) * limit
+
+    const posts = await Post.find(query)
+      .skip(skip)
+      .limit(limit)
+      .populate('authorId', 'name email')
+
     return res.status(200).json({ posts })
   }
 )

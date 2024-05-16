@@ -2,7 +2,8 @@
     "scripts": {
         "build": "tsc",
         "start": "tsc && node dist/src/index.js",
-        "dev": "NODE_OPTIONS='--no-warnings' nodemon --exec 'node --loader ts-node/esm src/index.ts' --ext .ts"
+        "dev": "NODE_OPTIONS='--no-warnings' nodemon --exec 'node --loader ts-node/esm src/index.ts' --ext .ts",
+        "seed": "NODE_OPTIONS='--no-warnings' node --loader ts-node/esm scripts/seed.ts"
     },
     "type": "module",
     "dependencies": {
@@ -22,6 +23,7 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
         "@types/cors": "^2.8.17",
         "@types/express": "^4.17.21",
         "@types/jsonwebtoken": "^9.0.5",

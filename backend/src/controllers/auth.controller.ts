@@ -24,7 +24,7 @@ export const Registercontroller = catchAsync(
     if (existingUser != null) {
       return res
         .status(400)
-        .json({ token: '', message: 'Username already exists' })
+        .json({ token: '', message: 'Email already exists' })
     }
     const salt = genSaltSync(10)
     const hashedpassword = hashSync(password, salt)
@@ -40,7 +40,8 @@ export const Registercontroller = catchAsync(
     })
     return res.json({
       token,
-      message: 'Account successfully registered!'
+      message: 'Account successfully registered!',
+      user: newUser
     })
   }
 )
@@ -62,17 +63,17 @@ export const Logincontroller = catchAsync(
     if (user === null) {
       return res
         .status(400)
-        .json({ token: '', message: 'Invalid username or password' })
+        .json({ token: '', message: 'Invalid email or password' })
     }
     const result = compareSync(password, user.passwordHash)
     if (!result) {
       return res
         .status(400)
-        .json({ token: '', message: 'Invalid username or password' })
+        .json({ token: '', message: 'Invalid email or password' })
     }
     const token = jwt.sign({ sub: user._id }, getEnv.JWT_KEY, {
       expiresIn: '30d'
     })
-    return res.json({ token, message: 'Successfully logged in!' })
+    return res.json({ token, message: 'Successfully logged in!', user })
   }
 )

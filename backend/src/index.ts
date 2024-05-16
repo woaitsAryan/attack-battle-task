@@ -6,7 +6,7 @@ import getEnv from './helpers/getEnv.js'
 import connectToDB from './initializers/db.js'
 import authRouter from './routes/auth.route.js'
 import mongoSanitize from 'express-mongo-sanitize'
-import { postRouter, postsRouter } from './routes/post.route.js'
+import { postsRouter } from './routes/post.route.js'
 import errorHandler from './middleware/error.middleware.js'
 
 const app = express()
@@ -23,7 +23,6 @@ app.use(helmet())
 if (getEnv.ENVIRONMENT === 'dev') app.use(morgan('dev'))
 
 app.use('/auth', authRouter)
-app.use('/post', postRouter)
 app.use('/posts', postsRouter)
 
 app.use(errorHandler)
