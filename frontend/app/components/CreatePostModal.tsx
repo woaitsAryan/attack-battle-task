@@ -23,9 +23,9 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ onClose, onCreatePost
     };
 
     return (
-        <Modal isOpen onRequestClose={onClose} className="flex items-center justify-center outline-none">
+        <Modal isOpen onRequestClose={onClose} className="flex items-center justify-center outline-none justify-self-center h-screen">
             <div className="bg-white rounded-lg p-8 max-w-md w-full">
-                <h2 className="text-2xl font-semibold mb-4">Create a new post</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Create a new post</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <label className="flex flex-col gap-2">
                         Title
