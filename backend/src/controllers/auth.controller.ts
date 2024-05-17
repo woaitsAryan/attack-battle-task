@@ -38,10 +38,11 @@ export const Registercontroller = catchAsync(
     const token = jwt.sign({ sub: newUser._id }, getEnv.JWT_KEY, {
       expiresIn: '30d'
     })
+
     return res.json({
       token,
       message: 'Account successfully registered!',
-      user: newUser
+      name: newUser.name
     })
   }
 )
@@ -74,6 +75,6 @@ export const Logincontroller = catchAsync(
     const token = jwt.sign({ sub: user._id }, getEnv.JWT_KEY, {
       expiresIn: '30d'
     })
-    return res.json({ token, message: 'Successfully logged in!', user })
+    return res.json({ token, message: 'Successfully logged in!', name: user.name })
   }
 )
