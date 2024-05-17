@@ -5,11 +5,11 @@ networks:
     driver: bridge
 
 services:
-  attack-battle-api:
+  attack-capital-api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: attack-battle-api
+    container_name: attack-capital-api
     restart: always
     env_file:
       - .env
@@ -34,7 +34,7 @@ services:
 
   mongo-db:
     image: mongo:7-jammy
-    container_name: attack-battle-mongo
+    container_name: attack-capital-mongo
     ports:
       - ${DB_PORT}:${DB_PORT}
     environment:
@@ -80,5 +80,5 @@ services:
 
 volumes:
   mongo-data:
-    name: attack-battle-mongo-data
+    name: attack-capital-mongo-data
     driver: local
