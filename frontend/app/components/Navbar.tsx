@@ -6,18 +6,20 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const Navbar = () => {
-
     const [username, setUsername] = useState('')
 
     useEffect(() => {
         const name = Cookie.get('name')
         if (name) {
             setUsername(name)
+        } else {
+            setUsername('')
         }
     }, [])
+
     return (
         <nav className="flex justify-between items-center p-2 bg-[#3D6DB3] text-white">
-            <Image src="/logo.png" alt = "logo" height={32} width={204} />
+            <Image src="/logo.png" alt="logo" height={32} width={204} />
             <div className="flex gap-4">
                 <Link href="/dashboard" className="py-2 px-4 rounded-md bg-[#345C98] hover:bg-[#2D5185] active:bg-[#395887]">Dashboard</Link>
                 <Link href="/" className="py-2 px-4 rounded-md bg-[#345C98] hover:bg-[#2D5185] active:bg-[#395887]">All</Link>
