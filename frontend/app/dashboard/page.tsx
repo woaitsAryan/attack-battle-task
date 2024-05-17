@@ -51,6 +51,10 @@ const Dashboard = () => {
     const handleCreatePost = async (post: CreatePostType) => {
         const toaster = Toaster.startLoad('Creating post..');
         try {
+            if(post.content.length < 10 || post.title.length < 5) {
+                Toaster.stopLoad(toaster, "Invalid input", 0);
+                return;
+            }
             const token = Cookie.get('token')
             if (!token || token === undefined) {
                 Toaster.stopLoad(toaster, "You are not signed in", 0);
