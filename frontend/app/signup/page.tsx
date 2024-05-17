@@ -75,7 +75,7 @@ const Login = () => {
             <div className="w-[50%] max-lg:w-full font-primary py-8 px-8 flex flex-col justify-center items-center translate-y-2">
                 <form onSubmit={handleSubmit} className="w-3/5 max-md:w-full flex flex-col items-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
-                        <div className="text-2xl font-semibold">Welcome to Attack Battle</div>
+                        <div className="text-2xl font-semibold">Welcome to Attack Capital!</div>
                         <div className="text-gray-400">Let&apos;s get you signed up!</div>
                     </div>
                     <div className="w-full flex flex-col gap-4">

@@ -3,8 +3,8 @@ import { Id, ToastOptions, UpdateOptions, toast } from 'react-toastify';
 class Toaster {
   //TODO add different ids to toasters
   static toastSettings: ToastOptions = {
-    position: 'top-center',
-    autoClose: 1000,
+    position: 'bottom-right',
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: false,

@@ -32,7 +32,6 @@ const Dashboard = () => {
             backend.get(`/posts?author=${userID}&page=1&limit=10`)
                 .then((res) => {
                     const postData = res.data.posts as PostType[]
-                    console.log(postData)
                     if (postData.length === 0) {
                         Toaster.stopLoad(toaster, "No posts found", 0);
                         return;
@@ -81,10 +80,10 @@ const Dashboard = () => {
                         <div className="text-2xl font-semibold">Dashboard </div>
                         <div className="text-gray-400">Here are your posts</div>
                     </div>
-                    <div className="w-full flex flex-col gap-4">
+                    <div className="w-full flex gap-4 flex-wrap">
                         <Suspense fallback={<PostCardSkeleton />}>
                             {posts.map((post, index) => (
-                                <PostCard key={index} post={post} />
+                                <PostCard key={index} post={post} type="dashboard"/>
                             ))}
                         </Suspense>
                     </div>

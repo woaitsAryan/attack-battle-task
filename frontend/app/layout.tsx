@@ -4,12 +4,12 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./components/Navbar";
-
+import NextTopLoader from 'nextjs-toploader';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Attack battle task",
-  description: "This is my task submission for Attack Battle Company",
+  title: "Attack Capital task",
+  description: "This is my task submission for Attack Capital Company",
 };
 
 export default function RootLayout({
@@ -20,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <NextTopLoader />
         <ToastContainer />
         <Navbar/>
         {children}
