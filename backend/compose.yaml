@@ -43,6 +43,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - mongo-data:/data/db
+    command: --port ${DB_PORT}
     networks:
       - api-network
     healthcheck:
