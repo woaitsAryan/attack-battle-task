@@ -5,11 +5,17 @@ import User from '../src/models/user.model.js'
 import 'dotenv/config'
 
 async function seedData (): Promise<void> {
-  const dbUrl = process.env.DB_URL
-  if (dbUrl === undefined) {
-    throw new Error('DB_URL is not defined')
+  const DB_HOST = process.env.DB_HOST
+  const DB_PORT = process.env.DB_PORT
+  const DB_USER = process.env.DB_USER
+  const DB_PASSWORD = process.env.DB_PASSWORD
+  const DB_DATABASE = process.env.DB_DATABASE
+  if ((DB_HOST == null) || (DB_PORT == null) || (DB_USER == null) || (DB_PASSWORD == null) || (DB_DATABASE == null)) {
+    throw new Error('Missing environment variables')
   }
-  await mongoose.connect(dbUrl)
+  const url = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}?authSource=admin`
+
+  await mongoose.connect(url)
 
   const user = new User({
     _id: new mongoose.Types.ObjectId(),
