@@ -22,8 +22,8 @@ const Navbar = () => {
             <Image src="/logo.png" alt="logo" height={32} width={204} />
             <div className="flex gap-4 relative">
                 <div className={`w-32 h-[2px] bg-white absolute bottom-0 left-0 ${menubtn === 0 ? "" : "translate-x-[110%]"} transition-all duration-200 ease-linear`}></div>
-                <Link href="/" className="py-2 px-4 rounded-md w-32 text-center" onClick={() => setmenubtn(1)}>Home</Link>
-                <Link href="/dashboard" className="py-2 px-4 rounded-md  w-32 text-center" onClick={() => setmenubtn(0)}>Dashboard</Link>
+                <Link href="/" className="py-2 px-4 rounded-md w-32 text-center" onClick={() => setmenubtn(0)}>Home</Link>
+                <Link href="/dashboard" className="py-2 px-4 rounded-md  w-32 text-center" onClick={() => setmenubtn(1)}>Dashboard</Link>
             </div>
             <div className="flex gap-4">
                 {username ? (

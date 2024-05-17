@@ -58,7 +58,7 @@ const Login = () => {
 
             const response = await backend.post('/auth/signup', formData)
             const token = response.data.token
-            const name = response.data.user.name
+            const name = response.data.name
             Cookie.set('token', token)
             Cookie.set('name', name)
             Toaster.stopLoad(toaster, 'Registered!', 1);
